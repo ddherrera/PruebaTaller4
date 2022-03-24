@@ -1,98 +1,105 @@
-function validateMyCode() {
- var $valForm = $("#inscription-form");
- if ($valForm.length) {
-  $valForm.validate({
-    rules: {
+'use strict';
 
-      documento: {
-        required: true,
-      },
-      identification: {
-        required: true,
-      },
-      nombre: {
-        required: true,
-        minlength: 3,
-        maxlength: 40,
-      },
-      lastName: {
-        required: true,
-        minlength: 3,
-        maxlength: 40,
-      },
-      correo: {
-        required: true,
-        email: true,
-      },
-      profesion: {
-        required: true,
-        maxlength: 75,
-      },
-      perfil: {
-        required: true,
-        maxlength: 250,
-      },
-    },
-    messages: {
+window.onload = () => {
+  const form = $("#inscription-form");
 
-      documento: {
-        required: "El tipo de documento es requerido",
-      },
-      identification: {
-        required: "El numero de documento es requerido",
-      },
-      nombre: {
-        required: "El nombre es requerido y debe tener entre 2 y 40 caracteres",
-      },
-      lastName: {
-        required: "El apellido es requerido y debe tener entre 2 y 40 caracteres",
-      },
-      correo: {
-        required: "El correo es requerido y debe ser un correo valido",
-      },
-      profesion: {
-        required: "La profesión es requerida y no debe superar los 75 caracteres",
-      },
-      perfil: {
-        required: "El perfil es requerido y no debe superar los 250 caracteres",
-      },
-    },
-  });
+  $().ready(() => {
+    if (form.length) {
+     form.validate({
+       rules: {
+   
+         documento: {
+           required: true,
+         },
+         identification: {
+           required: true,
+         },
+         nombre: {
+           required: true,
+           minlength: 3,
+           maxlength: 40,
+         },
+         lastName: {
+           required: true,
+           minlength: 3,
+           maxlength: 40,
+         },
+         correo: {
+           required: true,
+           email: true,
+         },
+         profesion: {
+           required: true,
+           maxlength: 75,
+         },
+         perfil: {
+           required: true,
+           maxlength: 250,
+         },
+       },
+       messages: {
+   
+         documento: {
+           required: "El tipo de documento es requerido",
+         },
+         identification: {
+           required: "El numero de documento es requerido",
+         },
+         nombre: {
+           required: "El nombre es requerido y debe tener entre 2 y 40 caracteres",
+         },
+         lastName: {
+           required: "El apellido es requerido y debe tener entre 2 y 40 caracteres",
+         },
+         correo: {
+           required: "El correo es requerido y debe ser un correo valido",
+         },
+         profesion: {
+           required: "La profesión es requerida y no debe superar los 75 caracteres",
+         },
+         perfil: {
+           required: "El perfil es requerido y no debe superar los 250 caracteres",
+         },
+       },
+     });
+  }
+})
 }
 
-let hayUnError = false;
-var male = $('#masculino')[0];
-  var female = $('#femenino')[0];
-  if(genderValidation(male, female,
-    'genderError'
-  )) {
-    hayUnError = true;
-  }
+function validateMyCode() {
+  let hayUnError = false;
+  var male = $('#masculino')[0];
+    var female = $('#femenino')[0];
+    if(genderValidation(male, female,
+      'genderError'
+    )) {
+      hayUnError = true;
+    }
 
-const hobbiesError = $('#hobbiesError')[0]; 
-  if(validarHobbie()) {
-    hobbiesError.classList.remove('is-invalid');
-    hobbiesError.classList.add('hidden');
-  } else {
-    hayUnError = true;
-    hobbiesError.classList.add('is-invalid');
-    hobbiesError.classList.remove('hidden');
-  }
+  const hobbiesError = $('#hobbiesError')[0]; 
+    if(validarHobbie()) {
+      hobbiesError.classList.remove('is-invalid');
+      hobbiesError.classList.add('hidden');
+    } else {
+      hayUnError = true;
+      hobbiesError.classList.add('is-invalid');
+      hobbiesError.classList.remove('hidden');
+    }
 
-  const tieneExperiencia= $('#tieneExperiencia')[0];
-  const experiencias = $('#experiencias')[0];
-  if(tieneExperiencia.checked && experiencias.value === '') {
-    hayUnError = true;
-    experiencias.classList.add('is-invalid');
-    $('#experienciaError')[0].innerHTML = 
-            `El campo experecienas es requerido `;
-  } else {
-     experiencias.classList.remove('is-invalid');
-  }
+    const tieneExperiencia= $('#tieneExperiencia')[0];
+    const experiencias = $('#experiencias')[0];
+    if(tieneExperiencia.checked && experiencias.value === '') {
+      hayUnError = true;
+      experiencias.classList.add('is-invalid');
+      $('#experienciaError')[0].innerHTML = 
+              `El campo experecienas es requerido `;
+    } else {
+      experiencias.classList.remove('is-invalid');
+    }
 
-  if(!hayUnError) {
-    imprimirDatos();
-  }
+    if(!hayUnError) {
+      imprimirDatos();
+    }
 }
 $("#inscription-form").submit(function (event) {
   event.preventDefault();
